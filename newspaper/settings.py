@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
 LOCAL_APPS = [
     "accounts",
+    "pages",
 ]
 
 INSTALLED_APPS += LOCAL_APPS
