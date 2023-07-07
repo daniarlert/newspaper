@@ -13,4 +13,6 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("articles/", include("articles.urls")),
     path("", include("pages.urls")),
+    # Third party
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
