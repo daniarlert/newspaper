@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <h2>{{ article.title }}</h2>
+        <p>by {{ article.author }} at {{ article.date }}</p>
+        <p>{{ article.body }}</p>
+    </div>
+    <hr>
+    <p>Back to <a href="{% url 'article_list' %}">all articles</a>.</p>
+{% endblock content %}

@@ -10,7 +10,7 @@ class HomePageTests(SimpleTestCase):
 
     def test_home_view(self):
         self.assertEqual(self.response.status_code, 200)
-        self.assertTemplateUsed(self.response, "home.html")
+        self.assertTemplateUsed(self.response, "pages/home.html")
 
     def test_home_url_resolves_homepageview(self):
         view = resolve("/")
@@ -24,7 +24,7 @@ class AboutPagetest(SimpleTestCase):
 
     def test_home_view(self):
         self.assertEqual(self.response.status_code, 200)
-        self.assertTemplateUsed(self.response, "about.html")
+        self.assertTemplateUsed(self.response, "pages/about.html")
 
     def test_home_url_resolves_homepageview(self):
         view = resolve("/about/")
