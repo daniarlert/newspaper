@@ -17,7 +17,7 @@ SECRET_KEY = "django-insecure-0wkat@ov=+9sr1o)&*)i3eec%hoq7zjlicxk+w3l&4)yvi4))(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost"]
 
 # Workaround for Docker
 if DEBUG:
@@ -28,6 +28,9 @@ if DEBUG:
         "127.0.0.1",
         "10.0.2.2",
     ]
+
+
+SITE_ID = 1
 
 # Application definition
 
@@ -42,6 +45,8 @@ INSTALLED_APPS = [
 
 THIRD_PARTY_APPS = [
     "debug_toolbar",
+    "allauth",
+    "allauth.account",
 ]
 
 LOCAL_APPS = [
@@ -73,14 +78,23 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                # Django defined contexts
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                # allauth
+                "django.template.context_processors.request",
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
 
 WSGI_APPLICATION = "newspaper.wsgi.application"
 
@@ -146,9 +160,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Auth
 # https://docs.djangoproject.com/en/4.2/topics/auth/
+
 AUTH_USER_MODEL = "accounts.CustomUser"
+
 LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+ACCOUNT_LOGOUT_REDIRECT_URL = "home"
+
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
 # Email backend
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

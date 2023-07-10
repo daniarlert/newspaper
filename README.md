@@ -8,10 +8,12 @@ This repository serves as a basic example of a Django project, showcasing key fe
 - Dependencies managed using [Poetry](https://python-poetry.org/).
 - [Docker](https://www.docker.com/) support.
 - Advanced development environment setup using [docker-compose](https://docs.docker.com/compose/).
-- Basic static files setup.
-- Includes a [pre-commit](https://pre-commit.com/) setup.
-- Custom login, logout and signup pages to handle user auth.
+- Custom user.
+- Log in/out, Sign Up and password reset via [django-allauth](https://github.com/pennersr/django-allauth).
 - Full CRUD functionality for articles.
+- Basic static files setup.
+- Debuggin with [django-debug-toolbar](https://github.com/jazzband/django-debug-toolbar)
+- Includes [pre-commit](https://pre-commit.com/) setup.
 
 ## 🛠️ Setup and Installation
 
