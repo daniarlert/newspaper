@@ -3,6 +3,10 @@ Django settings for newspaper project.
 """
 
 from pathlib import Path
+from environs import Env
+
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,13 +15,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-0wkat@ov=+9sr1o)&*)i3eec%hoq7zjlicxk+w3l&4)yvi4))("
+SECRET_KEY = env(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-0wkat@ov=+9sr1o)&*)i3eec%hoq7zjlicxk+w3l&4)yvi4))(",
+)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+DEBUG = env.bool("DJANGO_DEBUG", False)
+
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
 # Workaround for Docker
 if DEBUG:
@@ -41,22 +47,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-]
-
-THIRD_PARTY_APPS = [
+    # Third party
     "debug_toolbar",
     "allauth",
     "allauth.account",
-]
-
-LOCAL_APPS = [
+    # Local
     "accounts",
     "pages",
     "articles",
 ]
-
-INSTALLED_APPS += THIRD_PARTY_APPS
-INSTALLED_APPS += LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -103,14 +102,7 @@ WSGI_APPLICATION = "newspaper.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "db",  # set in docker-compose.yaml
-        "PORT": 5432,  # default postgres port
-    }
+    "default": env.dj_db_url("DATABASE_URL", default="postgres://postgres@db/postgres")
 }
 
 

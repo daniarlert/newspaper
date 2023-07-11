@@ -11,6 +11,7 @@ django = "^4.2.3"
 psycopg = {extras = ["binary"], version = "^3.1.9"}
 django-debug-toolbar = "^4.1.0"
 django-allauth = "^0.54.0"
+environs = {extras = ["django"], version = "^9.5.0"}
 
 
 [tool.poetry.group.dev.dependencies]
