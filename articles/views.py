@@ -40,7 +40,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Article
-    template_name = "article_delete.html"
+    template_name = "articles/article_delete.html"
     success_url = reverse_lazy("article_list")
 
     def test_func(self):

@@ -4,11 +4,13 @@
 
 {% block content %}
     {% for article in article_list %}
-        <h2>{{ article.title }}</h2>
+        <a href="{{ article.get_absolute_url }}">
+            <h2>{{ article.title }}</h2>
+        </a>
         <p>by {{ article.author }} at {{ article.date }}</p>
         <p>{{ article.body }}</p>
-        <a href="{% url 'article_edit' article.pk %}">Edit</a>
-        <a href="{% url 'article_delete' article.pk %}">Delete</a>
+        <a href="{% url 'article_edit' article.id %}">Edit</a>
+        <a href="{% url 'article_delete' article.id %}">Delete</a>
         <br>
     {% endfor %}
 {% endblock content %}
