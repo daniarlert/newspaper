@@ -5,6 +5,16 @@
         <h2>{{ article.title }}</h2>
         <p>by {{ article.author }} at {{ article.date }}</p>
         <p>{{ article.body }}</p>
+        <div>
+            <h3>Comments:</h3>
+            <ul>
+                {% for comment in article.comments.all %}
+                    <li>
+                        {{ comment.comment }} by {{ comment.author }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
     <hr>
     <p>Back to <a href="{% url 'article_list' %}">all articles</a>.</p>
