@@ -2,6 +2,9 @@
 
 {% block content %}
     <div>
+        {% if article.cover %}
+        <img src="{{ article.banner.url }}" alt="{{ article.title }}">
+        {% endif %}
         <h2>{{ article.title }}</h2>
         <p>by {{ article.author }} at {{ article.date }}</p>
         <p>{{ article.body }}</p>

@@ -17,6 +17,10 @@ class Article(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
     )
+    banner = models.ImageField(
+        upload_to="banners/",
+        blank=True,
+    )
 
     def __str__(self):
         return self.title
