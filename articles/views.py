@@ -1,4 +1,6 @@
+from typing import Any
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
@@ -46,3 +48,15 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         obj = self.get_object()
         return obj.author == self.request.user
+
+
+class SearchResultsListView(LoginRequiredMixin, ListView):
+    model = Article
+    context_object_name = "article_list"
+    template_name = "articles/search_results.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        return Article.objects.filter(
+            Q(title__icontains=query),
+        )
