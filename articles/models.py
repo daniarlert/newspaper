@@ -28,6 +28,11 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse("article_detail", args=[str(self.id)])
 
+    class Meta:
+        indexes = [
+            models.Index(fields=["id"], name="id_index"),
+        ]
+
 
 class Comment(models.Model):
     article = models.ForeignKey(

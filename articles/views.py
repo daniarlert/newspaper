@@ -25,6 +25,9 @@ class ArticleListView(ListView):
 class ArticleDetailView(DetailView):
     model = Article
     template_name = "articles/article_detail.html"
+    queryset = Article.objects.all().prefetch_related(
+        "comments__author",
+    )
 
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
