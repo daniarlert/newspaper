@@ -7,11 +7,11 @@ This repository serves as a basic example of a Django project, showcasing key fe
 - Built with Django 4.2 and Python 3.11.
 - Dependencies managed using [Poetry](https://python-poetry.org/).
 - [Docker](https://www.docker.com/) support.
-- Advanced development environment setup using [docker-compose](https://docs.docker.com/compose/).
+- Dev environment setup using [docker-compose](https://docs.docker.com/compose/).
 - Custom user.
 - Log in/out, Sign Up and password reset via [django-allauth](https://github.com/pennersr/django-allauth).
 - Full CRUD functionality for articles.
-- Basic static files setup.
+- Static files managed by [whitenoise](https://whitenoise.readthedocs.io/en/stable/).
 - Debuggin with [django-debug-toolbar](https://github.com/jazzband/django-debug-toolbar)
 - Includes [pre-commit](https://pre-commit.com/) setup.
 
